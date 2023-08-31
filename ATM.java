@@ -33,4 +33,15 @@ public class ATM {
         }
         return balances.get(userID);
     }
+
+    public double depositMoney(String userID, double amount) {
+        if (balances.get(userID) == null) {
+            throw new ArithmeticException("ID doesn't match any open account.");
+        }
+        if (amount < 0) {
+            throw new ArithmeticException("Amount can't be a negative number.");
+        }
+        balances.put(userID, balances.get(userID) + amount);
+        return balances.get(userID);
+    }
 }

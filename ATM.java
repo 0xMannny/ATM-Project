@@ -58,4 +58,22 @@ public class ATM {
         balances.put(userID, balances.get(userID) - amount);
         return balances.get(userID);
     }
+
+    public boolean transferMoney(String fromUserID, String toUserID, double amount) {
+        if (balances.get(fromUserID) == null) {
+            throw new ArithmeticException("Sender ID doesn't match any open account.");
+        }
+        if (balances.get(toUserID) == null) {
+            throw new ArithmeticException("Reciever ID doesn't match any open account.");
+        }
+        if (amount < 0) {
+            throw new ArithmeticException("Amount can't be a negative number.");
+        }
+        if (balances.get(fromUserID) - amount < 0.0) {
+            return false;
+        }
+        balances.put(fromUserID, balances.get(fromUserID) - amount);
+        balances.put(toUserID, balances.get(toUserID) + amount);
+        return true;
+    }
 }

@@ -26,4 +26,11 @@ public class ATM {
         }
         balances.put(userID, null);
     }
+
+    public double checkBalance(String userID) {
+        if (balances.get(userID) == null) {
+            throw new ArithmeticException("ID doesn't match any open account.");
+        }
+        return balances.get(userID);
+    }
 }

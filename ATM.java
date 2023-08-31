@@ -16,4 +16,14 @@ public class ATM {
         }
         balances.put(userID, amount);
     }
+
+    public void closeAccount(String userID) {
+        if (balances.get(userID) == null) {
+            throw new ArithmeticException("ID doesn't match any open account.");
+        }
+        if (balances.get(userID) != 0) {
+            throw new ArithmeticException("Balance needs to be 0 to close account.");
+        }
+        balances.put(userID, null);
+    }
 }

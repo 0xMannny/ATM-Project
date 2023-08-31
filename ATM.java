@@ -44,4 +44,18 @@ public class ATM {
         balances.put(userID, balances.get(userID) + amount);
         return balances.get(userID);
     }
+
+    public double withdrawMoney(String userID, double amount) {
+        if (balances.get(userID) == null) {
+            throw new ArithmeticException("ID doesn't match any open account.");
+        }
+        if (amount < 0) {
+            throw new ArithmeticException("Amount can't be a negative number.");
+        }
+        if (balances.get(userID) - amount < 0.0) {
+            throw new ArithmeticException("Don't have enough money.");
+        }
+        balances.put(userID, balances.get(userID) - amount);
+        return balances.get(userID);
+    }
 }

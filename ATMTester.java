@@ -32,11 +32,11 @@ public class ATMTester {
                                                                                                             // 550.0
             workingFunctions++;
 
-            // bank.audit();
-            // workingFunctions++;
+            bank.audit();
+            workingFunctions++;
 
-            // System.out.println("Audit completed successfully.");
-            // verifyAuditFile("AccountAudit.txt", 2);
+            System.out.println("Audit completed successfully.");
+            verifyAuditFile("AccountAudit.txt", 2);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -44,20 +44,20 @@ public class ATMTester {
         }
     }
 
-    // private static void verifyAuditFile(String fileName, int expectedEntries) {
-    //     try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-    //         int entryCount = 0;
-    //         while (reader.readLine() != null) {
-    //             entryCount++;
-    //         }
-    //         if (entryCount == expectedEntries) {
-    //             System.out.println("Audit file entries match expected count.");
-    //         } else {
-    //             System.out.println(
-    //                     "Audit file entries" + entryCount + "do not match expected count" + expectedEntries + ".");
-    //         }
-    //     } catch (IOException e) {
-    //         e.printStackTrace();
-    //     }
-    // }
+    private static void verifyAuditFile(String fileName, int expectedEntries) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            int entryCount = 0;
+            while (reader.readLine() != null) {
+                entryCount++;
+            }
+            if (entryCount == expectedEntries) {
+                System.out.println("Audit file entries match expected count.");
+            } else {
+                System.out.println(
+                        "Audit file entries " + entryCount + " do not match expected count " + expectedEntries + ".");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

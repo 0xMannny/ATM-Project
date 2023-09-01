@@ -1,0 +1,2 @@
+user2@example.com balance: 550.0
+user1@example.com balance: 1050.0

@@ -1,2 +1,2 @@
-user2@example.com balance: 550.0
-user1@example.com balance: 1050.0
+test1@gmail.com balance: 111.0
+test2@gmail.com balance: 222.0

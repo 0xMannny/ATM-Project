@@ -1,8 +1,7 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 public class ATM {
     private HashMap<String, Double> balances;
@@ -81,7 +80,7 @@ public class ATM {
         return true;
     }
 
-    public void audit() throws IOException {
+    public File audit() throws IOException {
         FileWriterReader writer = new FileWriterReader();
         String output = "";
         for (Map.Entry<String, Double> entry : balances.entrySet()) {
@@ -90,6 +89,7 @@ public class ATM {
             output += key + " balance: " + value + "\n";
             // do something with key and/or tab
         }
-        writer.writeFileMethod(output, "AccountAudit.txt");
+        File x = writer.writeFileMethod(output, "AccountAudit.txt");
+        return x;
     }
 }

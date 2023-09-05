@@ -20,10 +20,15 @@ class FileWriterReader
 
     public String readFileMethod(File file) throws IOException {
         String output = "";
+        int count = 0;
         try ( final Scanner scanner = new Scanner(file); ) {
             while ( scanner.hasNextLine() ) {
                 String line = scanner.nextLine();
-                output += "\n" + line;
+                if (count != 0) {
+                    output += "\n";
+                }
+                output += line;
+                count++;
             }
         } catch ( FileNotFoundException e ) {
             e.printStackTrace();

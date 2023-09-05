@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -6,7 +7,10 @@ public class ATMTester {
 
     public static void main(String[] args) {
         ATM bank = new ATM();
+        ATM bank2 = new ATM();
         int workingFunctions = 0;
+        int auditCount = 0;
+        FileWriterReader reader = new FileWriterReader();
 
         try {
             bank.openAccount("user1@example.com", 1000);
@@ -37,10 +41,36 @@ public class ATMTester {
 
             System.out.println("Audit completed successfully.");
             verifyAuditFile("AccountAudit.txt", 2);
+
+            File file = bank2.audit();
+
+            if (reader.readFileMethod(file).equals("")) {
+                auditCount++;
+            }
+
+            bank2.openAccount("test1@gmail.com", 111);
+            bank2.audit();
+
+            if (reader.readFileMethod(file).equals("test1@gmail.com balance: 111.0")) {
+                auditCount++;
+            }
+
+            bank2.openAccount("test2@gmail.com", 222);
+            bank2.audit();
+
+            if (reader.readFileMethod(file).equals("test1@gmail.com balance: 111.0\ntest2@gmail.com balance: 222.0")) {
+                auditCount++;
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             System.out.println("Valid Use Cases: " + workingFunctions);
+            if (auditCount == 3) {
+                System.out.println("Audit works correctly!");
+            } else {
+                System.out.println("Audit doesn't work correctly :(");
+            }
         }
     }
 
